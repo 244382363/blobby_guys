@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../Downloads/BlobbySprites/area_bkg_lava.png
+#begin area_bkg_lava.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,13 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../Downloads/BlobbySprites/area_bkg_lava.png;area_bkg_lava.png
-
-#begin ../../../Downloads/BlobbySprites/Ring.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:../../../Downloads/BlobbySprites/Ring.wav;Ring.wav
+/build:area_bkg_lava.png
 
 #begin area_bkg_lava.png
 /importer:TextureImporter
@@ -97,6 +91,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:platform.png
+
+#begin Ring.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Ring.wav
 
 #begin Ring.wav
 /importer:WavImporter

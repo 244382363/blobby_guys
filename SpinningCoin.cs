@@ -23,9 +23,24 @@ namespace blobby_guys
 
         public void DrawMe(SpriteBatch sb, GameTime gt)
         {
-            m_animCell.X = (m_animCell.X + m_animCell.Width);
-            if (m_animCell.X >= m_SpriteSheet.Width)
-                m_animCell.X = 0;
+            /* m_animCell.X = (m_animCell.X + m_animCell.Width);
+             if (m_animCell.X >= m_SpriteSheet.Width)
+                 m_animCell.X = 0;*/
+            //modify the drawme method of spinning coin
+            if (m_frameTimer <= 0)
+            {
+                m_animCell.X = (m_animCell.X + m_animCell.Width);
+                if (m_animCell.X >= m_SpriteSheet.Width) 
+                    m_animCell.X = 0;
+                
+                m_frameTimer = 1;
+            }
+
+            else
+            {
+                m_frameTimer -=  (float)gt.ElapsedGameTime.TotalSeconds * m_fps;
+            }
+
             sb.Draw(m_SpriteSheet,m_position, m_animCell, Color.White);
         }
     }
