@@ -60,6 +60,11 @@ namespace blobby_guys
                 m_velocity.X = -m_walkSpeed;
             }
 
+            //handle player jumping
+            if ((currPad.Buttons.B == ButtonState.Pressed) && (oldPad.Buttons.B == ButtonState.Released) &&
+                (m_velocity.Y == 0)) 
+                 m_velocity.Y = -7;
+
             m_position += m_velocity;
             CollisionRect.X = (int)m_position.X;
             CollisionRect.Y = (int)m_position.Y;
