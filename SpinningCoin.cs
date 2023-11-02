@@ -10,6 +10,7 @@ namespace blobby_guys
         private Texture2D m_SpriteSheet;
         private Vector2 m_position;
         private Rectangle m_animCell;
+        public Rectangle CollisionRect;
         private float m_frameTimer;
         private float m_fps;
         public SpinningCoin(Texture2D spriteSheet, int xpos, int ypos, int frameCount, int fps)
@@ -19,6 +20,18 @@ namespace blobby_guys
             m_position = new Vector2(xpos, ypos); 
             m_frameTimer = 1;
             m_fps = fps;
+
+            CollisionRect = new Rectangle(xpos, ypos, 
+                spriteSheet.Width / frameCount, spriteSheet.Height);
+        }
+
+        public void MoveTo(int xPos, int  yPos)
+        {
+            m_position.X = xPos;
+            m_position.Y = yPos;
+
+            CollisionRect.X = (int)m_position.X;
+            CollisionRect.Y = (int)m_position.Y;
         }
 
         public void DrawMe(SpriteBatch sb, GameTime gt)
