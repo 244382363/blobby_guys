@@ -85,7 +85,10 @@ namespace blobby_guys
 
             badguy = new baddie(Content.Load<Texture2D>("baddieball"),
                 _graphics.PreferredBackBufferWidth - 32, 100, 0.8f);
-            p1Char = new blobby(Content.Load<Texture2D>("snipe_stand_right"), 0, 100);
+            p1Char = new blobby(Content.Load<Texture2D>("snipe_stand_right"),
+                Content.Load <Texture2D>("snipe_jump_right"),
+                Content.Load <Texture2D>("snipe_run_right"),
+                0, 100, 24);
         }
 
         protected override void Update(GameTime gameTime)
@@ -105,7 +108,12 @@ namespace blobby_guys
                 ResetCoin();
             }
 
-            p1Char.UpdateMe(currPad, oldPad, GraphicsDevice.Viewport.Bounds,0.3f,223);
+            if (p1Char.CollisionRect.Intersects(coin.CollisionRect))
+            {
+                ResetCoin();
+            }
+
+            p1Char.UpdateMe(currPad, oldPad, GraphicsDevice.Viewport.Bounds,GRAVITY,GROUNDLEVEL,platforms);
 
 
 
