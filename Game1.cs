@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -21,7 +22,8 @@ namespace blobby_guys
         baddie badguy;
         leaf leaf;
         blobby p1Char;
-
+        scorepile p1Score, badguyScore;
+        SoundEffect ring;
 
         leaf[] leaves;
 
@@ -89,6 +91,10 @@ namespace blobby_guys
                 Content.Load <Texture2D>("snipe_jump_right"),
                 Content.Load <Texture2D>("snipe_run_right"),
                 0, 100, 24);
+            p1Score = new scorepile(Content.Load<Texture2D>("coin_gold"), 10, 230);
+            badguyScore = new scorepile(Content.Load<Texture2D>("coin_gold"), 310, 230);
+            ring = Content.Load<SoundEffect>("Ring");
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -106,11 +112,15 @@ namespace blobby_guys
             if (badguy.CollisionRect.Intersects(coin.CollisionRect))
             {
                 ResetCoin();
+                ring.Play();
+                badguyScore.Score++;
             }
 
             if (p1Char.CollisionRect.Intersects(coin.CollisionRect))
             {
                 ResetCoin();
+                p1Score.Score++;
+                ring.Play();
             }
 
             p1Char.UpdateMe(currPad, oldPad, GraphicsDevice.Viewport.Bounds,GRAVITY,GROUNDLEVEL,platforms);
@@ -138,6 +148,8 @@ namespace blobby_guys
             coin.DrawMe(_spriteBatch, gameTime);
             p1Char.DrawMe(_spriteBatch, gameTime);
             badguy.DrawMe(_spriteBatch);
+            p1Score.DrawMe(_spriteBatch,RNG);
+            badguyScore.DrawMe(_spriteBatch, RNG);
             for (int i = 0; i < leaves.Length; i++)
             {
 
